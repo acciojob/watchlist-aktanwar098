@@ -4,6 +4,8 @@ package com.driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
 
@@ -28,9 +30,24 @@ public class MovieService {
         return movieRepository.getDirectorInDb(name);
     }
 
-    public String addMovieDirectorPair(String movieName, String directorName){
-        return movieRepository.addMovieDirectorPairToDb(movieName,directorName);
+    public void createMovieDirectorPair(String movie, String director){
+        movieRepository.saveMovieDirectorPair(movie, director);
+    }
 
+    public List<String> findMoviesByDirector(String director){
+        return movieRepository.findMoviesByDirector(director);
+    }
+
+    public List<String> findAllMovies(){
+        return movieRepository.findAllMovies();
+    }
+
+    public void deleteDirector(String director){
+        movieRepository.deleteDirector(director);
+    }
+
+    public void deleteAllDirectors(){
+        movieRepository.deleteAllDirector();
     }
 
 }
